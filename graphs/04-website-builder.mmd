@@ -1,0 +1,21 @@
+flowchart TD
+    START([START]) --> A[understand_requirements]
+    A -->|اطلاعات ضروری ناقص| Q[ask_clarification]
+    Q --> F[finalize]
+    A -->|نیازها مشخص| P[plan_site]
+    P --> D[design_system]
+    D --> I[implement_site]
+    I --> V[validate_site]
+    V -->|build و بررسی‌ها موفق| W[create_preview]
+    V -->|خطا و فرصت اصلاح| R[repair_site]
+    R --> V
+    V -->|اتمام فرصت اصلاح| F
+    W --> U[collect_feedback]
+    U -->|منتظر نظر کاربر یا پایان بودجه| F
+    U -->|درخواست تغییر با بودجه باقی| C[revise_plan]
+    C --> I
+    U -->|تأیید یا تحویل نسخه فعلی| K[package_site]
+    K -->|انتشار خواسته‌شده و مقصد مشخص| H[publish_site]
+    K -->|تحویل فایل و preview| F
+    H --> F
+    F --> END([END])

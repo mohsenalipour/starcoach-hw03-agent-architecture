@@ -1,0 +1,22 @@
+flowchart TD
+    START([START]) --> A[validate_request]
+    A -->|ابهام در سؤال یا پایگاه| Q[ask_clarification]
+    Q --> F[finalize]
+    A -->|دسترسی نامعتبر| B[abstain]
+    A -->|ورودی معتبر| W[rewrite_question]
+    W --> P[plan_retrieval]
+    P --> R[retrieve_chunks]
+    R --> K[rank_chunks]
+    K --> E[assess_evidence]
+    E -->|شواهد کافی| G[generate_grounded_answer]
+    E -->|شواهد ناکافی و بودجه باقی| U[reformulate_query]
+    U --> R
+    E -->|شواهد ناکافی و پایان بودجه| B
+    G --> V[verify_support]
+    V -->|همه ادعاها پشتیبانی دارند| F
+    V -->|ادعای بی‌پشتوانه و بودجه بازیابی| U
+    V -->|فرصت اصلاح پاسخ| X[repair_answer]
+    X --> V
+    V -->|امکان تأیید وجود ندارد| B
+    B --> F
+    F --> END([END])

@@ -1,0 +1,18 @@
+flowchart TD
+    START([START]) --> A[understand_request]
+    A -->|موضوع یا دامنه نامشخص| Q[ask_clarification]
+    Q --> F[finalize]
+    A -->|قابل پژوهش| P[plan_research]
+    P --> S[search_sources]
+    S --> R[rank_sources]
+    R --> E[extract_evidence]
+    E --> C[check_coverage]
+    C -->|شواهد کافی یا پایان بودجه| W[synthesize_report]
+    C -->|شکاف و بودجه باقی است| U[refine_queries]
+    U --> S
+    W --> V[verify_claims]
+    V -->|ادعاهای پشتیبانی‌شده| F
+    V -->|اشکال و فرصت اصلاح| X[repair_report]
+    X --> V
+    V -->|اتمام فرصت اصلاح| F
+    F --> END([END])
